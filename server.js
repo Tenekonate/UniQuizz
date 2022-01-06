@@ -29,5 +29,6 @@ app.set("view engine", "pug"); // express => rep.render("fichier")
 app.use(express.static("public"));
 
 app.use("/", require("./src/App"));
+app.use("/", require("./src/route-quizz"));
 
 app.listen(8080, () => console.log("API is running on port 8080"));
