@@ -1,0 +1,10 @@
+extends layout 
+
+block titre_page 
+    title Bienvenu sur le site
+
+block contenu_page
+    h1 Bienvenu sur la nouvelle application 
+    div 
+        p #{message} <!-- interpolation -->
+        p= session

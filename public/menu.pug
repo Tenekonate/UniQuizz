@@ -1,0 +1,25 @@
+nav 
+    .nav-wrapper.blue.darken-3
+        ul.left
+            li: a(href="/home") Accueil
+            if session 
+                li:a(href="/quizz") Quizz
+        ul.right 
+                if !session
+                    li: a(href="/add-user") Créer profil
+                    li: a(href="/connexion") Connexion
+                if session
+                    li: a(href="/deconnexion").deconnexion Déconnexion
+                    script. 
+                        document.querySelector(".deconnexion").addEventListener("click", e => {
+                            e.preventDefault()
+                            const req = new XMLHttpRequest()
+                            req.open("GET","/delete-cookie");
+                            req.send()
+                            req.onload = () => {
+                                if(req.status === 200){
+                                    console.log(req.responseText)
+                                    window.location.href = "/connexion";
+                                }
+                            }
+                        })

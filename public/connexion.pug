@@ -1,0 +1,20 @@
+extends layout 
+
+block titre_page 
+    title Accéder au back office
+
+block contenu_page
+    h1.center-align Se connecter 
+    .row 
+        form(action=www).row.offset-s3.col.s6
+            .input-field.s6.col
+                input(type="text" name="email" id="email")
+                label(for="email") votre email 
+            .input-field.s6.col 
+                input(type="text" name="password" id="password")
+                label(for="password") votre password 
+            div.center-align
+                input(type="submit" class="waves-effect waves-light btn purple darken-1 submit-btn ")
+
+block script_page 
+    script(src="/connexion.js")
