@@ -1,0 +1,16 @@
+extends layout 
+
+block titre_page 
+    title Bienvenu sur la page des résultats
+
+block contenu_page
+    h1.center Votre résultat
+    div.row
+        .col.m3
+        .col.s12.m6 
+            .card.deep-purple 
+                p.card-title.white-text.center= "Bravo vous avez eu " + score.score + "/3"
+                .card-content.white-text
+                    p= "Vous avez répondu " + score.response.join(", ")
+                    p Les bonnes réponses étaient : 
+                    p= score.questionQuizz.join(", ")

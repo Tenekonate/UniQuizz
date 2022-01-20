@@ -1,0 +1,24 @@
+extends layout 
+
+block titre_page 
+    title Bienvenu sur la page des historiques
+block contenu_page
+    h1.center Voici vos anciens résultats
+    div.row
+        .col.m3
+        .col.s12.m6 
+            .card.deep-purple 
+                p.card-title.white-text.center= "Historique pour l'utilisateur: " + email
+                .card-content.white-text
+                    each currResult, i in result
+                        ul 
+                            li= "Vous avez répondu " + currResult.response.join(", ")
+                            li Les bonnes réponses étaient : 
+                            li=  currResult.questionQuizz.join(", ")
+                            li= "Vous avez eu " + currResult.score + "/3"
+                        button(class="waves-effect waves-light btn-small purple darken-1" value=`${currResult._id}`) Supprimer
+                        hr
+
+block script_page 
+    script(src="/history.js")
+        
