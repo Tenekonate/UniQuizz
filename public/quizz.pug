@@ -1,9 +1,26 @@
 extends layout 
 
 block titre_page 
-    title Bienvenu sur la page du quizz
+    title Bienvenue sur la page du quizz
 
 block contenu_page
-    h1 Bienvenu sur le quizz :) 
-        p On commencer demain
-        p= session
+    h1.center Bienvenue sur le quizz :) 
+    .row 
+        .col.m3
+        .col.s12.m6 
+            .card.deep-purple 
+                p.card-title.white-text.center Veuillez remplir le quizz
+                form.card-content.white-text
+                    each question, i in questions
+                        .input-field
+                            p= question.x + " X " + question.y + " = " 
+                        .input-field
+                            input(type="number" name="answer" id="answer" required) 
+                            label(for="answer") Résultat
+                            input(type="hidden" name="questionQuizz" id="questionQuizz" value=`${question.x} X ${question.y} = ${question.result}`)
+                            input(type="hidden" name="resultat" id="resultat" value=question.result)
+                        br
+                    div.center-align
+                        input(type="submit" class="waves-effect waves-light btn purple darken-1 submit-btn")
+block script_page 
+    script(src="/quizz.js")

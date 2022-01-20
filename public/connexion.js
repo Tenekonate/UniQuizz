@@ -12,7 +12,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
     })
   );
   req.onload = () => {
-    // fait une redirection sur la page d'accueil en ca de succès
+    //fait une redirection sur la page d'accueil en ca de succès
     if (req.status === 200) {
       const { url } = JSON.parse(req.responseText);
       window.location.href = url;

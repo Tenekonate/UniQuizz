@@ -1,17 +1,17 @@
 extends layout 
 
 block titre_page 
-    title créer un profil utilisateur
+    title Créer un profil utilisateur
 
 block contenu_page
-    h1 créer un profil utilisateur
+    h1 Créer un profil utilisateur
     .row 
         form
             .input-field 
-                input(type="text" name="email" id="email")
+                input(type="email" name="email" id="email")
                 label(for="email") votre email 
             .input-field 
-                input(type="text" name="password" id="password")
+                input(type="password" name="password" id="password")
                 label(for="password") votre password 
             input(type="submit" class="waves-effect waves-light btn purple darken-1 submit-btn")
 

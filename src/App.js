@@ -5,11 +5,7 @@ const router = Router();
 
 router.get("/home", (req, res) => {
   //vérifie si il y a un utilisateur connecté
-  const welcome = {
-    message: "bonjour je suis nouvelle",
-    session: req.session.isAuth,
-  };
-  res.render("home", welcome);
+  res.render("home", { session: req.session.isAuth });
 });
 
 router.get("/add-user", (req, res) => {
@@ -39,6 +35,7 @@ router.post("/add-user", async (req, res) => {
 
     res.json({
       status: "success",
+      url: `${req.protocol}://${req.headers.host}/connexion`,
     });
   } catch (ex) {
     console.log(ex);
@@ -60,20 +57,22 @@ router.post("/connexion", async (req, res) => {
         message: "aucun profil trouvé pour cet email",
       });
     }
-    bcrypt.compare(password, utilisateurRecherche.password, (err, result) => {
-      if (err)
-        return res.status(400).json({
-          status: "erreur",
-          message: "aucun profil trouvé pour ce passord",
-        });
 
-      //envoie l'info du cookie pour la page d'accueil
-      req.session.isAuth = true;
-
-      res.json({
-        status: "success",
-        url: `${req.protocol}://${req.headers.host}/home`,
+    let compare = await bcrypt.compare(password, utilisateurRecherche.password);
+    if (!compare) {
+      return res.status(400).json({
+        status: "erreur",
+        message: "aucun profil trouvé pour ce password",
       });
+    }
+
+    //envoie l'info du cookie pour la page d'accueil
+    req.session.isAuth = true;
+    req.session.email = email;
+
+    res.json({
+      status: "success",
+      url: `${req.protocol}://${req.headers.host}/home`,
     });
   } catch (ex) {
     console.log(ex);

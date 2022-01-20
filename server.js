@@ -1,12 +1,10 @@
 const express = require("express");
-const cors = require("cors");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
 require("./start-mongo")();
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(
   session({
